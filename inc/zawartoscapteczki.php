@@ -51,23 +51,24 @@
                         }
                         else
                         {
-                            $rezultaty = $polaczenie->query("SELECT ListaLekow.NazwaHandlowa, leki_w_apteczkach.koszt, leki_w_apteczkach.ilosc, leki_w_apteczkach.data_waznosci, leki_w_apteczkach.id_leku_w_apteczce FROM ListaLekow, leki_w_apteczkach, apteczki WHERE ListaLekow.id=leki_w_apteczkach.id_leku AND leki_w_apteczkach.id_apteczki=$id_apteczki");
+                            $rezultaty = $polaczenie->query("SELECT ListaLekow.NazwaHandlowa, leki_w_apteczkach.koszt, leki_w_apteczkach.ilosc, leki_w_apteczkach.data_waznosci, leki_w_apteczkach.id_leku_w_apteczce FROM leki_w_apteczkach, ListaLekow WHERE ListaLekow.id=leki_w_apteczkach.id_leku AND leki_w_apteczkach.id_apteczki=$id_apteczki ORDER BY leki_w_apteczkach.data_waznosci");
                             if(!$rezultaty) throw new Exception($polaczenie->error);
                         
                             else
                             {
                                 echo '<div id = "1" class="row">';
-                                echo '<form action = "inc/usun.php" method = "post">';
+                                echo '<form method = "POST">';
                                 echo '<div class = "form-group row">';
-                                echo '<table class="table"><tr class="thead-dark"><th>Nazwa leku</th><th>Cena</th><th>Ilość</th><th>Data ważności</th><th><div><input type="submit" name = "action" value="Usun/Utylizuj"></div></th><th><div ><input type="submit" name = "action" value="Zażyj"></div></th></tr>';
+                                echo '<table class="table"><tr class="thead-dark"><th>Nazwa leku</th><th>Cena</th><th>Ilość</th><th>Data ważności</th><th>Usuń</th><th>Zażyj</th></tr>';
                                 while($row = $rezultaty->fetch_row())
                                 {
                                     $data = new DateTime($row[3]);    
                                     if($data->format('Y-m-d H:i:s')<date('Y-m-d H:i:s'))
-                                        echo '<tr style="background-color:red"><td>'.$row[0].'</td><td>'.$row[1].'</td><td>'.$row[2].'</td><td>'.$row[3].'</td><td><input type="checkbox" name='.$row[4].' value = "utylizacja"></td></tr>';
+                                        echo '<tr style="background-color:red"><td>'.$row[0].'</td><td>'.$row[1].'</td><td>'.$row[2].'</td><td>'.$row[3].'</td><td><form method = "GET" action = "inc/wydaj.php"><button class="btn btn-secondary" value ="'.$row[4].'"name="usun" href = "inc/wydaj.php" type = "submit">Utylizuj</button></td><td></td></tr>';
                                     else
                                     {
-                                        echo '<tr><td>'.$row[0].'</td><td>'.$row[1].'</td><td>'.$row[2].'</td><td>'.$row[3].'</td><td><input type="checkbox"  name='.$row[4].' value = "usuniecie"></td><td><input type="checkbox"  name=zazyj'.$row[5].' value = "zazycie"></td></tr>';
+                                        echo '<tr><td>'.$row[0].'</td><td>'.$row[1].'</td><td>'.$row[2].'</td><td>'.$row[3].'</td><td><form action = "inc/wydaj.php" method = "GET"><button class="btn btn-secondary" value ="'.$row[4].'"name="usun" href = "inc/wydaj.php" type = "submit">Usuń</button></form></td><td><button class="btn btn-secondary" value ="'.$row[4].'"name="usun" href = "inc/wydaj.php" type = "submit">Zażyj</button></form></form></td></tr>';
+                                        $nazwa = $row[0];
                                     }
                                 }
                                 echo '</table>';

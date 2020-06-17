@@ -15,16 +15,16 @@
     echo "Error: ".$polaczenie->connect_errno;
   }
 
-  if(isset($_GET['wydaj']))
+  if(isset($_GET['usun']))
   {
-    $nazwa = $_SESSION['nazwa'];
-    $id = $_GET['id_leku'];
-    $apteczka = $_GET['apteczka'];
 
-    $sql ="DELETE FROM leki_w_apteczkach WHERE leki_w_apteczkach.id_leku_w_apteczce=$id AND id_apteczki=$apteczka";
+    $id = $_GET['usun'];
+    $nazwa = $_GET['nazwa'];
+
+
+    $sql ="DELETE FROM leki_w_apteczkach WHERE leki_w_apteczkach.id_leku_w_apteczce=$id";
 
     if($polaczenie->query($sql) === TRUE) {
-      echo "<br> Wydano lek: $nazwa";
       header ('Location:zawartoscapteczki.php');
       
     } else {
