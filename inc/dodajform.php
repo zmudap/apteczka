@@ -29,21 +29,18 @@
 	$apteczka =$_GET['apteczka'];
 
 	$sql = "INSERT INTO leki_w_apteczkach VALUES (NULL,'$id', '$nazwa','$postac', '$apteczka','$data', '$ilosc','$cena')";
+	$sql2 = "INSERT INTO Operacje_w_apteczkach VALUES (NULL,'Dodanie','$id','$apteczka','$ilosc','$data', NULL)";
 		//echo $sql;
-		if ($polaczenie->query($sql) === TRUE) {
-
+		if ($polaczenie->query($sql) === TRUE) 
+		{
+			
 			echo "<br> Dodano nowy lek: $nazwa";
-
-			
-
-			
-		} else {
+		} 
+		else 
+		{
 			echo "<br> Error: " . $sql . "<br>" . $polaczenie->error;
 		}
-
-
 	}
-
 ?>
 
 <div id="container">
@@ -66,7 +63,7 @@
 					Ilość (szt./ml.): <input type="number" name="ilosc" min = "1" value = "0" step="1"required><br /><br/>
 					Termin ważności: <input type="date" name="data" required><br /><br/>
 					Cena [PLN]: <input type="number" name="cena" min="0.00" value = "0" step = "0.01" required><br /><br/>
-					<input name="save" type="submit" class="btn_1" value="Dodaj lek do apteczki"/>
+					<input name="save" type="submit" class="btn btn-primary" value="Dodaj lek do apteczki"/>
 			</form>
 		</div>
 	</div>

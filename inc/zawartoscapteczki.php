@@ -51,7 +51,7 @@
                         }
                         else
                         {
-                            $rezultaty = $polaczenie->query("SELECT ListaLekow.NazwaHandlowa, leki_w_apteczkach.koszt, leki_w_apteczkach.ilosc, leki_w_apteczkach.data_waznosci, leki_w_apteczkach.id_leku_w_apteczce FROM leki_w_apteczkach, ListaLekow WHERE ListaLekow.id=leki_w_apteczkach.id_leku AND leki_w_apteczkach.id_apteczki=$id_apteczki ORDER BY leki_w_apteczkach.data_waznosci");
+                            $rezultaty = $polaczenie->query("SELECT ListaLekow.NazwaHandlowa, leki_w_apteczkach.koszt, leki_w_apteczkach.ilosc, leki_w_apteczkach.data_waznosci, leki_w_apteczkach.id_leku_w_apteczce, leki_w_apteczkach.id_apteczki FROM leki_w_apteczkach, ListaLekow WHERE ListaLekow.id=leki_w_apteczkach.id_leku AND leki_w_apteczkach.id_apteczki=$id_apteczki ORDER BY leki_w_apteczkach.data_waznosci");
                             if(!$rezultaty) throw new Exception($polaczenie->error);
                         
                             else
@@ -64,10 +64,10 @@
                                 {
                                     $data = new DateTime($row[3]);    
                                     if($data->format('Y-m-d H:i:s')<date('Y-m-d H:i:s'))
-                                        echo '<tr style="background-color:red"><td>'.$row[0].'</td><td>'.$row[1].'</td><td>'.$row[2].'</td><td>'.$row[3].'</td><td><form method = "GET" action = "inc/wydaj.php"><button class="btn btn-secondary" value ="'.$row[4].'"name="usun" href = "inc/wydaj.php" type = "submit">Utylizuj</button></td><td></td></tr>';
+                                        echo '<form action = "inc/wydaj.php" method = "GET"><tr style="background-color:red"><td>'.$row[0].'</td><td>'.$row[1].'</td><td>'.$row[2].'</td><td>'.$row[3].'</td><td><button class="btn btn-secondary" value ="'.$row[4].'"name="usun" type = "submit">Utylizuj</button></td><td></td></tr></form>';
                                     else
                                     {
-                                        echo '<tr><td>'.$row[0].'</td><td>'.$row[1].'</td><td>'.$row[2].'</td><td>'.$row[3].'</td><td><form action = "inc/wydaj.php" method = "GET"><button class="btn btn-secondary" value ="'.$row[4].'"name="usun" href = "inc/wydaj.php" type = "submit">Usuń</button></form></td><td><button class="btn btn-secondary" value ="'.$row[4].'"name="usun" href = "inc/wydaj.php" type = "submit">Zażyj</button></form></form></td></tr>';
+                                        echo '<tr><td>'.$row[0].'</td><td>'.$row[1].'</td><td>'.$row[2].'</td><td>'.$row[3].'</td><td><form action = "inc/wydaj.php" method = "GET"><button class="btn btn-secondary" value ="'.$row[4].'"name="usun" href = "inc/wydaj.php" type = "submit">Usuń</button></form></td><td><button class="btn btn-secondary" value ="'.$row[4].'"name="usun" href = "inc/wydaj.php" type = "submit">Zażyj</button></form></td></tr>';
                                         $nazwa = $row[0];
                                     }
                                 }

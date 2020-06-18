@@ -27,8 +27,7 @@
             if($polaczenie->connect_errno!=0){
                 throw new Exception(mysqli_connect_errno());
             }
-            else{
- 
+            else{ 
                 $polaczenie->query("INSERT INTO Operacje_w_apteczkach VALUES (NULL,'$rodzaj','$id_leku','$id_apteczki','$ilosc','$data','$id_uzytkownika')");
 
                 for($i = 0; $i<$ilosc; $i++){

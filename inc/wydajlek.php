@@ -5,21 +5,20 @@
   //header("Location: mojeleki.php");
 ?>
 
+
 <div id="container">
 	<div class="rectangle">
 		</form>
-			<div class="form">
-			<form action="inc/wydaj.php" method="GET">
+		<div class="form">
+		<form action="inc/wydaj.php" method="GET">
                     <label for="apteczka">Wybierz apteczkę: </label>
                     <select id="apteczka" name = "apteczka">
                         <?php
                             include 'wyborapteczki.php';
                         ?>
                     </select> <br/><br/>
-					
                     <label for="leki">Wybierz lek: </label>
                     <select id="id_leku" name = "id_leku">
-
                     <?php
                         require_once 'connect.php';
                         mysqli_report(MYSQLI_REPORT_STRICT);
@@ -30,7 +29,7 @@
                                 throw new Exception(mysqli_connect_errno());
                             }
                             else{
-                                $rezultaty = $polaczenie->query("SELECT * FROM leki_w_apteczkach WHERE leki_w_apteczkach.id_apteczki = $Aktualna_apteczka");
+                                $rezultaty = $polaczenie->query("SELECT * FROM leki_w_apteczkach");
                                 if(!$rezultaty) throw new Exception($polaczenie->error);
                                 else{
                                     while($row = $rezultaty->fetch_row()){

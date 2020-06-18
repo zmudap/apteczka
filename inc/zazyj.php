@@ -21,13 +21,13 @@
   {
 
     $id = $_GET['usun'];
-    $sql ="DELETE FROM leki_w_apteczkach WHERE leki_w_apteczkach.id_leku_w_apteczce=$id";
+    $sql ="UPDATE leki_w_apteczkach SET leki_w_apteczkach.ilosc = leki_w_apteczkach.ilosc-1 WHERE leki_w_apteczkach.id_leku_w_apteczce=$id";
     $data = date('Y-m-d H:i:s');
     $id_lek = $_GET['usun'];
 
     if($polaczenie->query($sql) === TRUE) {
       echo "Usunięto lek z apteczki!";
-      $polaczenie->query("INSERT INTO Operacje_w_apteczkach VALUES (NULL,'Usunieto','$id_lek', NULL, NULL, '$data',NULL)");
+      $polaczenie->query("INSERT INTO Operacje_w_apteczkach VALUES (NULL,'Zazyto','$id_lek', NULL, '1', '$data',NULL)");
 
       
     } else {

@@ -85,6 +85,7 @@ function find($table, $conn, $value, $sposob)
 			<tbody>
 	<?
 	if($result->num_rows > 0){
+		
 		while($row = $result->fetch_assoc()){
 			echo'
 			<tr>
@@ -92,7 +93,7 @@ function find($table, $conn, $value, $sposob)
 				<td>'.$row["NazwaHandlowa"].'</td>
 				<td>'.$row["Postac"].'</td>
 				<td>'.$row["KodKreskowy"].'</td>
-				<td><form action ="dodajform.php" method="GET"><input type="hidden" name="nazwa" value="'.$row["NazwaHandlowa"].'"><input type="hidden" name="postac" value="'.$row["Postac"].'"><input type="hidden" name="id" value="'.$row["id"].'"><input  type="submit" value="Dodaj do apteczki"></form></td>
+				<td><form action ="dodajform.php" method="GET"><input type="hidden" name="nazwa" value="'.$row["NazwaHandlowa"].'"><input type="hidden" name="postac" value="'.$row["Postac"].'"><input type="hidden" name="id" value="'.$row["id"].'"><input  type="submit" class="btn btn-primary" value="Dodaj do apteczki"></form></td>
 			</tr>';
 		}
 	} else {

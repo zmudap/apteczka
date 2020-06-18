@@ -17,7 +17,7 @@
 			  </select><br/><br />
 			  
 			  <input type="text" name="search" placeholder="Wartość klucza"required>
-			  <input type="submit" class="btn_1" value="Wyszukaj">
+			   		<input type="submit" class="btn btn-primary" value="Wyszukaj">
 			</form>
 		</div>		
 <?php

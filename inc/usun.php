@@ -28,9 +28,9 @@
                 {
                     if(isset($_POST[$row[4]]))
                     {
-                        $nazwa_operacji = $_POST[$row[4]];
+                        $nazwa_operacji = "Usuniecie/utylizacja";
                         $id_lek = $row[0];
-                        $ilosc_opakowan = 1;
+                        $ilosc_opakowan = $row[2];
                         $koszty = $row[1];
                         echo $nazwa_operacji.' '.$id_lek.' '.$zalogowany.' '.$id_apteczki.' '.$data.'<br>';
                         $polaczenie->query("INSERT INTO Operacje_w_apteczkach VALUES (NULL,'$nazwa_operacji','$id_lek','$id_apteczki','$ilosc_opakowan', '$data', '$zalogowany')");

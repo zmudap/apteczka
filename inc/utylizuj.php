@@ -26,8 +26,8 @@
     $id_lek = $_GET['usun'];
 
     if($polaczenie->query($sql) === TRUE) {
-      echo "Usunięto lek z apteczki!";
-      $polaczenie->query("INSERT INTO Operacje_w_apteczkach VALUES (NULL,'Usunieto','$id_lek', NULL, NULL, '$data',NULL)");
+      echo "Zutylizowano lek z apteczki!";
+      $polaczenie->query("INSERT INTO Operacje_w_apteczkach VALUES (NULL,'Zutylizowano','$id_lek', NULL, NULL, '$data',NULL)");
 
       
     } else {
