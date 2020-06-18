@@ -24,10 +24,13 @@
     $sql ="DELETE FROM leki_w_apteczkach WHERE leki_w_apteczkach.id_leku_w_apteczce=$id";
     $data = date('Y-m-d H:i:s');
     $id_lek = $_GET['usun'];
+    $id_uzytkownika = $_SESSION['user'];
+    $apteczka = $_SESSION['apteczka'];
+
 
     if($polaczenie->query($sql) === TRUE) {
-      echo "Zutylizowano lek z apteczki!";
-      $polaczenie->query("INSERT INTO Operacje_w_apteczkach VALUES (NULL,'Zutylizowano','$id_lek', NULL, NULL, '$data',NULL)");
+      echo "Usunięto lek z apteczki!";
+      $polaczenie->query("INSERT INTO Operacje_w_apteczkach VALUES (NULL,'Utylizacja','$id_lek', '$apteczka', '1', '$data','$id_uzytkownika')");
 
       
     } else {

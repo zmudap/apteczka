@@ -25,13 +25,12 @@
             </button>
 
             <div class="dropdown-menu" aria-labelledby="menu3lista">
-                <a class="dropdown=item" href="index.php?operacja=301"><?php echo "Wydaj lek "?></a>
                 <a class="dropdown=item" href="index.php?operacja=302"><li><?php echo "Dodaj do apteczki" ?></li></a>
                 <a class="dropdown=item" href="index.php?operacja=303"><li><?php echo "Historia apteczki" ?></li></a>
                 <a class="dropdown=item" href="index.php?operacja=304"><li><?php echo "Zawartość apteczki" ?></li></a>
             </div>
             
-            <input class="btn btn-primary" type="button" onClick="location.href='inc/logout.php'" value = "Wyloguj się">
+            <input class="btn btn-danger" type="button" onClick="location.href='inc/logout.php'" value = "Wyloguj się">
             </input>
               
     </div>

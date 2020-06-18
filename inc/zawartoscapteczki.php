@@ -27,8 +27,9 @@
         </div>
 
         <?php
-            if(isset($_POST['apteczka']) || isset($_SESSION['po_usuwaniu']))    
-            {
+            $_SESSION['apteczka']=$_POST['apteczka'];
+            if(isset($_POST['apteczka']) || isset($_SESSION['po_usuwaniu']))  
+            {   
                 if(isset($_POST['apteczka']))
                 {
                     $id_apteczki = $_POST['apteczka'];
@@ -64,10 +65,10 @@
                                 {
                                     $data = new DateTime($row[3]);    
                                     if($data->format('Y-m-d H:i:s')<date('Y-m-d H:i:s'))
-                                        echo '<form action = "inc/wydaj.php" method = "GET"><tr style="background-color:red"><td>'.$row[0].'</td><td>'.$row[1].'</td><td>'.$row[2].'</td><td>'.$row[3].'</td><td><button class="btn btn-secondary" value ="'.$row[4].'"name="usun" type = "submit">Utylizuj</button></td><td></td></tr></form>';
+                                        echo '<tr style="background-color:red"><td>'.$row[0].'</td><td>'.$row[1].'</td><td>'.$row[2].'</td><td>'.$row[3].'</td><td><form action = "inc/utylizuj.php" method = "GET"><button class="btn btn-secondary" value ="'.$row[4].'"name="usun" type = "submit">Utylizuj</button></form></td><td></td></tr>';
                                     else
                                     {
-                                        echo '<tr><td>'.$row[0].'</td><td>'.$row[1].'</td><td>'.$row[2].'</td><td>'.$row[3].'</td><td><form action = "inc/wydaj.php" method = "GET"><button class="btn btn-secondary" value ="'.$row[4].'"name="usun" href = "inc/wydaj.php" type = "submit">Usuń</button></form></td><td><button class="btn btn-secondary" value ="'.$row[4].'"name="usun" href = "inc/wydaj.php" type = "submit">Zażyj</button></form></td></tr>';
+                                        echo '<tr><td>'.$row[0].'</td><td>'.$row[1].'</td><td>'.$row[2].'</td><td>'.$row[3].'</td><td><form action = "inc/wydaj.php" method = "GET"><button class="btn btn-secondary" value ="'.$row[4].'"name="usun" href = "inc/wydaj.php" type = "submit">Usuń</button></td><td><button class="btn btn-secondary" value ="'.$row[4].'"name="usun" href = "inc/wydaj.php" type = "submit">Zażyj</button></form></td></tr>';
                                         $nazwa = $row[0];
                                     }
                                 }

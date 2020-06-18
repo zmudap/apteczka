@@ -15,15 +15,20 @@ if($polaczenie->connect_errno!=0)
 
 if(isset($_GET['save']))
 {
+  $rodzaj = "Dodano";
+  $data = date('Y-m-d H:i:s');
   $postac = $_GET['postac'];
   $nazwa = $_GET['nazwa'];
   $id = $_GET['id'];
   $ilosc = $_GET['ilosc'];
-  $data = $_GET['data'];
+  $data_waznosci = $_GET['data'];
   $cena = $_GET['cena'];
   $apteczka =$_GET['apteczka'];
+  $id_uzytkownika = $_SESSION['user'];
 
-  $sql = "INSERT INTO leki_w_apteczkach VALUES (NULL,'$id', '$nazwa','$postac', '$apteczka','$data', '$ilosc','$cena')";
+  $polaczenie->query("INSERT INTO Operacje_w_apteczkach VALUES (NULL,'$rodzaj','$id','$apteczka','$ilosc','$data','$id_uzytkownika')");
+
+  $sql = "INSERT INTO leki_w_apteczkach VALUES (NULL,'$id', '$nazwa','$postac', '$apteczka','$data_waznosci', '$ilosc','$cena')";
 	//echo $sql;
 	if ($polaczenie->query($sql) === TRUE) {
 
@@ -41,4 +46,4 @@ if(isset($_GET['save']))
 
 ?>
 <br/> <br/>
-<button  class="btn btn-primary" type="button"><a href="index.php">Powrót do strony głównej</a></button>
+<button  class="btn btn-primary" type="button" style = "text-decoration:none; color:#ffffff;"><a href="index.php">Powrót do strony głównej</a></button>

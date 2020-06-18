@@ -38,55 +38,6 @@
 
     switch($kodOperacji)
     {
-      case 101:
-        if($wynik = zapytanieDoBazy($mojePolaczenie, $UPRselect))
-        {
-          include "inc/naglTabUprWysw.php";
-          while($wiersz = $wynik->fetch_assoc())
-            printf($wiersz['id_kod'], $wiersz['kod'], $wiersz['aktor']);
-            $mojePolaczenie->close();
-        }
-        else echo $txtBladZapytania;
-      break;
-
-      case 102:
-        if($wynik = zapytanieDoBazy($mojePolaczenie, $UPRselect))
-        {
-          include "inc/naglTabUprUsun.php";
-          while($wiersz = $wynik->fetch_assoc())
-            printf("<tr><td>%d</td><td>%d</td><td>%s</td><td><a href=\"index.php?id=%d&operacja=1021\">EDYCJA</a></td></tr>", $wiersz['id'], $wiersz['kod'], $wiersz['aktor'], $wiersz['id']);
-            echo "</tbody></table>";
-            $mojePolaczenie->close();
-        }
-        else
-          echo $txtBladZapytania;
-      break;
-
-      case 1021:
-        echo sprintf($UPRselect1, $_GET['id']);
-        if($wynik = zapytanieDoBazy($mojePolaczenie, sprintf($UPRselect1, $_GET['id'])))
-        {
-          $wiersz = $wynik->fetch_assoc();
-          include "forms/frmEdytujUprawnienia.php";
-          $mojePolaczenie->close();
-        }
-        else
-          echo $txtBladZapytania;
-      break;
-
-      case 103:
-        include "forms/frmDodajUprawnienia.php";
-      break;
-
-      case 104:
-        if($wynik = zapytanieDoBazy($mojePolaczenie, $UPRselect))
-        {
-          include "inc/naglTabUprUsun.php";
-          while($wiersz = $wynik->fetch_assoc())
-            printf("<tr><td>%d</td><td>%d</td><td>%s</td><td><a href=\"operacjeDB.php?id=%d&kodOperacji=104\">USUN</a></td></tr>", $wiersz['id'], $wiersz['kod'], $wiersz['aktor'], $wiersz['id']);
-            echo "</tbody></table>";
-            $mojePolaczenie->close();
-        }
 
       case 201:
         if($wynik = zapytanieDoBazy($mojePolaczenie, $SLEKselect))
@@ -153,13 +104,6 @@
       case 203:
         
         include "inc/dodanieapteczki.php";
-        $mojePolaczenie->close();
-        
-      break;
-
-      case 301:
-        
-        include "inc/wydajlek.php";
         $mojePolaczenie->close();
         
       break;
